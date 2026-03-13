@@ -11,7 +11,7 @@
 - [x] Implement `Motor` class in `src/Motor.cpp/h` using PWM (ledc) for speed control and GPIO for direction. Add methods: `begin()`, `setSpeed(uint8_t)`, `forward()`, `backward()`, `stop()`, `brake()`.
 - [x] Implement `MotorDriver` class in `src/MotorDriver.cpp/h` that encapsulates two `Motor` instances. Provide high-level movement methods: `driveForward(speed)`, `driveBackward(speed)`, `turn(speed, angle)`, `pivotTurn(speed)`.
 - [x] Write unit tests in `test/motor_test.cpp` that verify PWM frequency/duty cycle configuration and motor state changes using mock pins or simulated outputs.
-- [ ] Create calibration routine in `src/calibration.cpp` that measures actual motor speeds and generates PWM-to-speed mapping. Store results in non-volatile storage (NVS) or config file.
+- [x] Create calibration routine in `src/calibration.cpp` that measures actual motor speeds and generates PWM-to-speed mapping. Store results in non-volatile storage (NVS) or config file.
 
 ## Phase 3: Ultrasonic Sensor Integration
 - [x] Implement `UltrasonicSensor` class in `src/UltrasonicSensor.cpp/h` using NewPing library. Add `begin()`, `ping()`, `getDistanceCM()`, `getDistanceInches()`. Set timeout to 30ms for 5m max range.

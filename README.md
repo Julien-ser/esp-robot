@@ -34,28 +34,90 @@ See `include/pin_config.h` for complete pin definitions.
 esp-robot/
 ├── include/           # Header files
 │   └── pin_config.h   # Pin definitions and hardware constants
-├── src/              # Source code (to be implemented)
+├── src/              # Source code
 │   ├── main.cpp
-│   ├── Motor.cpp/h
-│   ├── MotorDriver.cpp/h
-│   ├── UltrasonicSensor.cpp/h
-│   ├── ObstacleDetector.cpp/h
-│   ├── Robot.cpp/h
-│   └── calibration.cpp
-├── lib/              # Custom libraries (to be implemented)
-├── test/             # Unit tests (to be implemented)
+│   ├── Motor.cpp/h          # Individual motor control via PWM
+│   ├── MotorDriver.cpp/h    # Differential drive control
+│   ├── UltrasonicSensor.cpp/h  # HC-SR04 interface
+│   ├── ObstacleDetector.cpp/h   # Filtered distance reading
+│   ├── SensorArray.cpp/h        # Multi-sensor management
+│   ├── calibration.cpp/h       # Motor speed calibration
+│   └── Robot.cpp/h             # Main state machine (planned)
+├── test/             # Unit tests
+│   ├── motor_test.cpp
+│   └── sensor_test.cpp
 ├── platformio.ini    # PlatformIO configuration
 ├── TASKS.md          # Development progress
 └── README.md         # This file
 ```
 
+## Calibration Procedure
+
+The motors may have different characteristics, so calibration is essential for accurate driving and turning.
+
+### What Calibration Does
+
+The calibration routine:
+1. Tests the robot at multiple PWM values (50-255)
+2. Measures actual speed (cm/s) for each motor
+3. Stores a PWM-to-speed lookup table in NVS (non-volatile storage)
+4. Enables speed compensation: you can request a speed in cm/s and the system converts to the correct PWM
+
+### How to Run Calibration
+
+1. Place the robot on a clear, level surface with a measured distance (default: 50cm)
+2. Upload the code with calibration support
+3. Open serial monitor at 115200 baud
+4. Send the `cal` command (or trigger calibration mode via code)
+5. Follow the prompts:
+   - For each PWM test value, place robot at start marker
+   - Press any key to start the test run
+   - Robot will drive forward at the test PWM
+   - Press any key when it reaches the end marker
+   - The system records time and calculates speed
+6. Repeat for both motors (left then right)
+7. Data is automatically saved to NVS and persists across reboots
+
+### Calibration Data Storage
+
+Data is stored in ESP32 NVS under namespace `robot_cal` with key `cal_data`. To clear calibration:
+- Send `cal_clear` command, OR
+- Call `calibration.clear()` in code
+
+### Using Calibrated Speeds
+
+After calibration, use:
+- `MotorDriver::driveForwardCalibrated(float speed_cm_s)` - drive at exact cm/s
+- `MotorDriver::turnCalibrated(uint8_t baseSpeed, int16_t degrees)` - precise turns using speed-based differential
+- `calibration.getPWMForSpeed('L' or 'R', desired_speed)` - manual PWM lookup
+
 ## Current Progress
 
 ✅ **Phase 1 Complete:**
 - [x] GPIO pin assignments defined in `include/pin_config.h`
-- [ ] PlatformIO project initialization
-- [ ] Directory structure and skeleton files
-- [ ] Serial monitor configuration and blink test
+- [x] PlatformIO project initialization
+- [x] Directory structure and skeleton files
+- [x] Serial monitor configuration and blink test
+
+✅ **Phase 2 Complete:**
+- [x] Motor class with PWM speed control
+- [x] MotorDriver class with movement methods
+- [x] Unit tests for motor control
+- [x] Calibration routine with NVS storage
+
+✅ **Phase 3 Complete:**
+- [x] UltrasonicSensor class (NewPing library)
+- [x] ObstacleDetector with filtering and hysteresis
+- [x] Multi-sensor support via SensorArray
+- [ ] Sensor tests (pending)
+
+⏳ **Phase 4 In Progress:**
+- [ ] Robot state machine implementation
+- [ ] Obstacle avoidance algorithm integration
+- [ ] Serial remote control
+- [ ] Debug dashboard
+- [ ] Integration tests
+- [ ] Final documentation
 
 ## Setup Instructions
 
@@ -88,6 +150,46 @@ The robot implements a simple state machine with avoidance behavior:
 2. Monitor front distance
 3. If obstacle within 50cm: stop, reverse 0.5s, pivot turn 90°
 4. Resume driving
+
+## Calibration Procedure
+
+The motors may have different characteristics, so calibration is essential for accurate driving and turning.
+
+### What Calibration Does
+
+The calibration routine:
+1. Tests the robot at multiple PWM values (50-255)
+2. Measures actual speed (cm/s) for each motor
+3. Stores a PWM-to-speed lookup table in NVS (non-volatile storage)
+4. Enables speed compensation: you can request a speed in cm/s and the system converts to the correct PWM
+
+### How to Run Calibration
+
+1. Place the robot on a clear, level surface with a measured distance (default: 50cm)
+2. Upload the code with calibration support
+3. Open serial monitor at 115200 baud
+4. Send the `cal` command (or trigger calibration mode via code)
+5. Follow the prompts:
+   - For each PWM test value, place robot at start marker
+   - Press any key to start the test run
+   - Robot will drive forward at the test PWM
+   - Press any key when it reaches the end marker
+   - The system records time and calculates speed
+6. Repeat for both motors (left then right)
+7. Data is automatically saved to NVS and persists across reboots
+
+### Calibration Data Storage
+
+Data is stored in ESP32 NVS under namespace `robot_cal` with key `cal_data`. To clear calibration:
+- Send `cal_clear` command, OR
+- Call `calibration.clear()` in code
+
+### Using Calibrated Speeds
+
+After calibration, use:
+- `MotorDriver::driveForwardCalibrated(float speed_cm_s)` - drive at exact cm/s
+- `MotorDriver::turnCalibrated(uint8_t baseSpeed, int16_t degrees)` - precise turns using speed-based differential
+- `calibration.getPWMForSpeed('L' or 'R', desired_speed)` - manual PWM lookup
 
 ## Power Requirements
 
