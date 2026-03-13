@@ -5,10 +5,10 @@
 - [x] Define ESP32 GPIO pin assignments for motor driver (ENA, IN1, IN2, ENB, IN3, IN4) and ultrasonic sensor (TRIG, ECHO). Document in `include/pin_config.h` with descriptive comments and voltage levels.
 - [x] Initialize PlatformIO project with Arduino-ESP32 framework. Create `platformio.ini` configured for `esp32dev` board with required libraries: `NewPing`, `PID`, and `AsyncTCP` (optional for later WiFi).
 - [x] Set up project directory structure: `src/` for main code, `include/` for headers, `lib/` for custom libraries, and `test/` for unit tests. Create basic skeleton files: `src/main.cpp`, `src/Motor.h`, `src/UltrasonicSensor.h`.
-- [ ] Configure serial monitor output at 115200 baud for debugging. Implement simple "blink" test to verify build environment and basic ESP32 functionality before adding peripherals.
+- [x] Configure serial monitor output at 115200 baud for debugging. Implement simple "blink" test to verify build environment and basic ESP32 functionality before adding peripherals.
 
 ## Phase 2: Motor Control Implementation
-- [ ] Implement `Motor` class in `src/Motor.cpp/h` using PWM (ledc) for speed control and GPIO for direction. Add methods: `begin()`, `setSpeed(uint8_t)`, `forward()`, `backward()`, `stop()`, `brake()`.
+- [x] Implement `Motor` class in `src/Motor.cpp/h` using PWM (ledc) for speed control and GPIO for direction. Add methods: `begin()`, `setSpeed(uint8_t)`, `forward()`, `backward()`, `stop()`, `brake()`.
 - [ ] Implement `MotorDriver` class in `src/MotorDriver.cpp/h` that encapsulates two `Motor` instances. Provide high-level movement methods: `driveForward(speed)`, `driveBackward(speed)`, `turn(speed, angle)`, `pivotTurn(speed)`.
 - [ ] Write unit tests in `test/motor_test.cpp` that verify PWM frequency/duty cycle configuration and motor state changes using mock pins or simulated outputs.
 - [ ] Create calibration routine in `src/calibration.cpp` that measures actual motor speeds and generates PWM-to-speed mapping. Store results in non-volatile storage (NVS) or config file.
