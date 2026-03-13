@@ -1551,3 +1551,17 @@ ERROR [138:12] Use of undeclared identifier 'UNITY_END'
 [91m[1mError: [0mUser not found.
 📝 Log saved: logs/iteration-3.md
 📊 Token Usage: 18750 / Session: 27750 / 64000
+✅ Changes committed
+To https://github.com/Julien-ser/esp-robot.git
+   9bf95a7..38cdf73  main -> main
+✅ Pushed to GitHub
+📊 Updated Tasks: 10/19 completed, 9 remaining
+   Next task: Create calibration routine in `src/calibration.cpp` that mea...
+📍 Iteration 4 at Thu Mar 12 09:53:27 PM EDT 2026...
+🤖 OpenCode processing: Create calibration routine in `src/calibration.cpp` that measures actual motor speeds and generates PWM-to-speed mapping. Store results in non-volatile storage (NVS) or config file.
+[0m
+> build · stepfun/step-3.5-flash:free
+[0m
+[91m[1mError: [0mUser not found.
+📝 Log saved: logs/iteration-4.md
+📊 Token Usage: 2750 / Session: 30500 / 64000
