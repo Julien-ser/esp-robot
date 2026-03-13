@@ -14,7 +14,7 @@
 - [ ] Create calibration routine in `src/calibration.cpp` that measures actual motor speeds and generates PWM-to-speed mapping. Store results in non-volatile storage (NVS) or config file.
 
 ## Phase 3: Ultrasonic Sensor Integration
-- [ ] Implement `UltrasonicSensor` class in `src/UltrasonicSensor.cpp/h` using NewPing library. Add `begin()`, `ping()`, `getDistanceCM()`, `getDistanceInches()`. Set timeout to 30ms for 5m max range.
+- [x] Implement `UltrasonicSensor` class in `src/UltrasonicSensor.cpp/h` using NewPing library. Add `begin()`, `ping()`, `getDistanceCM()`, `getDistanceInches()`. Set timeout to 30ms for 5m max range.
 - [ ] Create `ObstacleDetector` class in `src/ObstacleDetector.cpp/h` that reads ultrasonic sensor and implements filtering (moving average) and threshold comparison with hysteresis to avoid false positives.
 - [ ] Add support for multiple sensors: implement daisy-chained or multiplexed reading if using additional front/side sensors. Define sensor positions (front-left, front-right, rear).
 - [ ] Write test in `test/sensor_test.cpp` that simulates echo pulses and validates distance calculation accuracy, edge cases (no echo, too far), and filtering behavior.
