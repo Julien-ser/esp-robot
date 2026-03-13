@@ -2,7 +2,7 @@
 #define ULTRASONIC_SENSOR_H
 
 #include <Arduino.h>
-#include <NewPing.h>
+#include "ISonar.h"
 
 /**
  * @brief Ultrasonic sensor class using HC-SR04 with NewPing library
@@ -12,13 +12,14 @@
  */
 class UltrasonicSensor {
 private:
-    NewPing _sonar;             // NewPing instance
-    uint16_t _maxDistance;      // Maximum distance in cm
+    ISonar* _sonar;             // Pointer to sonar interface
+    uint16_t _maxDistance;      // Maximum distance in cm (for NewPingAdapter)
     uint16_t _timeout;           // Timeout in microseconds
+    bool _ownsSonar;             // Whether we own the _sonar pointer
 
 public:
     /**
-     * @brief Construct a new Ultrasonic Sensor object
+     * @brief Construct a new Ultrasonic Sensor object with actual hardware pins
      *
      * @param triggerPin GPIO pin for TRIG (output)
      * @param echoPin GPIO pin for ECHO (input)
@@ -27,6 +28,16 @@ public:
      */
     UltrasonicSensor(uint8_t triggerPin, uint8_t echoPin,
                      uint16_t maxDistance = 500, uint16_t timeout = 30000);
+
+    /**
+     * @brief Construct a new Ultrasonic Sensor object with an injected sonar (for testing)
+     *
+     * @param sonar ISonar implementation
+     * @param timeout Timeout in microseconds (default 30000)
+     */
+    UltrasonicSensor(ISonar* sonar, uint16_t timeout = 30000);
+
+    ~UltrasonicSensor();
 
     /**
      * @brief Initialize the ultrasonic sensor

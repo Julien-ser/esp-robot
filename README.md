@@ -109,7 +109,7 @@ After calibration, use:
 - [x] UltrasonicSensor class (NewPing library)
 - [x] ObstacleDetector with filtering and hysteresis
 - [x] Multi-sensor support via SensorArray
-- [ ] Sensor tests (pending)
+- [x] Sensor tests (unit tests with mock ISonar interface)
 
 ⏳ **Phase 4 In Progress:**
 - [ ] Robot state machine implementation

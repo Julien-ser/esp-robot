@@ -1,9 +1,21 @@
 #include "UltrasonicSensor.h"
-#include <NewPing.h>
+#include "NewPingAdapter.h"
+#include <Arduino.h>
 
 UltrasonicSensor::UltrasonicSensor(uint8_t triggerPin, uint8_t echoPin,
                                    uint16_t maxDistance, uint16_t timeout)
-    : _sonar(triggerPin, echoPin, maxDistance), _maxDistance(maxDistance), _timeout(timeout) {
+    : _maxDistance(maxDistance), _timeout(timeout), _ownsSonar(true) {
+    _sonar = new NewPingAdapter(triggerPin, echoPin, maxDistance);
+}
+
+UltrasonicSensor::UltrasonicSensor(ISonar* sonar, uint16_t timeout)
+    : _sonar(sonar), _maxDistance(0), _timeout(timeout), _ownsSonar(false) {
+}
+
+UltrasonicSensor::~UltrasonicSensor() {
+    if (_ownsSonar && _sonar != nullptr) {
+        delete _sonar;
+    }
 }
 
 void UltrasonicSensor::begin() {
@@ -13,17 +25,17 @@ void UltrasonicSensor::begin() {
 }
 
 uint16_t UltrasonicSensor::ping() {
-    return _sonar.ping();
+    return _sonar->ping();
 }
 
 uint16_t UltrasonicSensor::getDistanceMM() {
-    return _sonar.convert_cm(ping()) * 10;
+    return _sonar->convert_cm(ping()) * 10;
 }
 
 uint16_t UltrasonicSensor::getDistanceCM() {
-    return _sonar.convert_cm(ping());
+    return _sonar->convert_cm(ping());
 }
 
 uint16_t UltrasonicSensor::getDistanceInches() {
-    return _sonar.convert_in(ping());
+    return _sonar->convert_in(ping());
 }
