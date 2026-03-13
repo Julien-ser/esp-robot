@@ -227,3 +227,23 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 [0m
 Now I'll commit the changes with a proper message and push:
+[0m$ [0mgit add . && git commit -m "Feature: Define GPIO pin assignments in pin_config.h with documentation" && git push origin main
+[main a5064f9] Feature: Define GPIO pin assignments in pin_config.h with documentation
+ 6 files changed, 811 insertions(+), 22 deletions(-)
+ create mode 100644 TASKS_original.md
+ create mode 100644 include/pin_config.h
+ create mode 100644 logs/iteration-1.md
+ create mode 100644 logs/worker-session-20260312-214455.log
+To https://github.com/Julien-ser/esp-robot.git
+ * [new branch]      main -> main
+[0m
+Task completed successfully. Created `include/pin_config.h` with well-documented GPIO assignments and hardware constants, updated TASKS.md (marked [x]), updated README.md with project documentation and pinout table, and committed all changes to GitHub.
+
+**Pin assignments:**
+- Motor A: ENA=13, IN1=12, IN2=14
+- Motor B: ENB=27, IN3=26, IN4=25
+- Ultrasonic: TRIG=23, ECHO=22 (with voltage divider)
+
+All files pushed to repository.
+📝 Log saved: logs/iteration-1.md
+📊 Token Usage: 5250 / Session: 5250 / 64000
