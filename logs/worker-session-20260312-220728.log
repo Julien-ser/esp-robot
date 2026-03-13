@@ -1366,3 +1366,26 @@ Let me verify if there are any other places that instantiate `UltrasonicSensor` 
 [0m✱ [0mGrep "UltrasonicSensor"[90m in src · 22 matches[0m
 [0m→ [0mRead src/main.cpp
 Let's check `main.cpp` to see if it uses UltrasonicSensor:
+Now let's commit the changes with a descriptive message:
+[0m
+[0m$ [0mgit add -A && git commit -m "feat: add comprehensive sensor unit tests with mock ISonar interface
+
+- Introduce ISonar abstraction layer for testability
+- Implement NewPingAdapter to wrap NewPing library
+- Refactor UltrasonicSensor to depend on ISonar (dependency injection)
+- Add test-only constructor for injecting mock implementations
+- Completely rewrite test/sensor_test.cpp with:
+  * MockSonar test double implementing ISonar
+  * UltrasonicSensor unit tests (conversion accuracy, no echo, max distance)
+  * ObstacleDetector unit tests (filtering, hysteresis, no echo handling)
+- Update TASKS.md to mark sensor tests as complete
+- Update README.md to reflect Phase 3 completion
+"
+[main 4a9000f] feat: add comprehensive sensor unit tests with mock ISonar interface
+ 9 files changed, 2151 insertions(+), 93 deletions(-)
+ create mode 100644 logs/iteration-65.md
+ create mode 100644 src/ISonar.h
+ create mode 100644 src/NewPingAdapter.h
+[0m
+📝 Log saved: logs/iteration-65.md
+📊 Token Usage: 15250 / Session: 23000 / 64000
