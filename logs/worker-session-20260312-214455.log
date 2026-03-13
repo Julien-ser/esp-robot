@@ -2657,3 +2657,21 @@ Options:
 [91m[1mError: [0mUser not found.
 📝 Log saved: logs/iteration-56.md
 📊 Token Usage: 2750 / Session: 2750 / 64000
+✅ Changes committed
+To https://github.com/Julien-ser/esp-robot.git
+   2ca9851..04010df  main -> main
+✅ Pushed to GitHub
+📊 Updated Tasks: 10/19 completed, 9 remaining
+   Next task: Create calibration routine in `src/calibration.cpp` that mea...
+📍 Iteration 57 at Thu Mar 12 09:58:51 PM EDT 2026...
+✓ Progress: Git commit found
+📊 Task attempt 2: Progress detected, continuing...
+📚 Loading context from previous iteration attempts...
+   Found context in: iteration-56.md
+🤖 OpenCode processing: Create calibration routine in `src/calibration.cpp` that measures actual motor speeds and generates PWM-to-speed mapping. Store results in non-volatile storage (NVS) or config file.
+[0m
+> build · stepfun/step-3.5-flash:free
+[0m
+[91m[1mError: [0mUser not found.
+📝 Log saved: logs/iteration-57.md
+📊 Token Usage: 3250 / Session: 6000 / 64000
