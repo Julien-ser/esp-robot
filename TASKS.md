@@ -25,7 +25,7 @@
 - [x] Add simple remote control via serial commands: 'w/a/s/d' for movement, 'q/e' for rotate, 'x' for stop. Implement command parser in `src/CommandParser.cpp/h` with safety interlock (only accept commands when in IDLE or override mode).
 - [x] Integrate all components in `main.cpp`: initialize motor driver, ultrasonic sensor, and robot controller. Add watchdog timer to reset system if any component hangs. Implement graceful shutdown on panic condition.
 - [x] Create debug dashboard: output state, distance readings, motor speeds, and battery voltage (if ADC pin assigned) to serial monitor at 1Hz. Add diagnostic commands to test individual components.
-- [ ] Write final integration test `test/robot_integration_test.cpp` that simulates sensor readings and verifies correct state transitions and motor outputs using test doubles.
+- [x] Write final integration test `test/robot_integration_test.cpp` that simulates sensor readings and verifies correct state transitions and motor outputs using test doubles.
 - [x] Document entire system in `TASKS.md` and `README.md` with complete pinout diagram, power requirements (voltage/current estimates), assembly steps, and calibration procedure.
 
 ---

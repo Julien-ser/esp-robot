@@ -2,8 +2,8 @@
 #define ROBOT_H
 
 #include <stdint.h>
-#include "MotorDriver.h"
-#include "ObstacleDetector.h"
+#include "IMotorDriver.h"
+#include "IObstacleDetector.h"
 
 /**
  * @brief Robot state machine for autonomous obstacle-avoiding robot
@@ -22,8 +22,8 @@ public:
     };
 
 private:
-    MotorDriver& _motorDriver;      // Reference to motor driver
-    ObstacleDetector& _detector;    // Reference to obstacle detector
+    IMotorDriver& _motorDriver;      // Reference to motor driver
+    IObstacleDetector& _detector;    // Reference to obstacle detector
 
     State _currentState;            // Current robot state
     State _previousState;           // Previous state (for debugging)
@@ -50,8 +50,8 @@ public:
      * @param safetyThreshold Distance threshold for obstacle (mm, default 300)
      * @param defaultSpeed Default driving speed (0-255, default 150)
      */
-    Robot(MotorDriver& motorDriver,
-          ObstacleDetector& detector,
+    Robot(IMotorDriver& motorDriver,
+          IObstacleDetector& detector,
           uint16_t safetyThreshold = 300,
           uint8_t defaultSpeed = 150);
 
@@ -101,6 +101,11 @@ public:
      * @return uint8_t Current speed (0-255)
      */
     uint8_t getRightMotorSpeed() const;
+
+#ifdef UNIT_TEST
+    // Test-only method to manipulate state start time for time simulation
+    void setStateStartTimeForTest(unsigned long time);
+#endif
 };
 
 #endif // ROBOT_H

@@ -202,3 +202,9 @@ void Robot::reset() {
         Serial.println("Robot: Reset only valid from STOPPED state");
     }
 }
+
+#ifdef UNIT_TEST
+void Robot::setStateStartTimeForTest(unsigned long time) {
+    _stateStartTime = time;
+}
+#endif

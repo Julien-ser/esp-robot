@@ -1,6 +1,7 @@
 #ifndef OBSTACLE_DETECTOR_H
 #define OBSTACLE_DETECTOR_H
 
+#include "IObstacleDetector.h"
 #include "UltrasonicSensor.h"
 
 /**
@@ -8,8 +9,9 @@
  *
  * Wraps an ultrasonic sensor with moving average filtering and
  * hysteresis-based threshold comparison to avoid false positives.
+ * Implements IObstacleDetector interface for testability.
  */
-class ObstacleDetector {
+class ObstacleDetector : public IObstacleDetector {
 private:
     UltrasonicSensor& _sensor;   // Reference to ultrasonic sensor
     uint16_t _filterSize;       // Number of samples for moving average
@@ -44,21 +46,21 @@ public:
     /**
      * @brief Initialize the detector (also initializes underlying sensor)
      */
-    void begin();
+    void begin() override;
 
     /**
      * @brief Update the detector - call periodically (e.g., every 50-100ms)
      *
      * Takes a new distance reading, updates filter, and evaluates thresholds.
      */
-    void update();
+    void update() override;
 
     /**
      * @brief Get the current filtered distance in millimeters
      *
      * @return uint16_t Distance in mm (0 = no reading)
      */
-    uint16_t getDistanceMM() const;
+    uint16_t getDistanceMM() const override;
 
     /**
      * @brief Check if obstacle is currently detected
@@ -68,7 +70,7 @@ public:
      * @return true Obstacle within danger threshold
      * @return false No obstacle or only warning level
      */
-    bool isObstacleDetected() const;
+    bool isObstacleDetected() const override;
 
     /**
      * @brief Check if we are in warning zone (not yet dangerous)
@@ -76,12 +78,12 @@ public:
      * @return true Distance between warning and danger thresholds
      * @return false Otherwise
      */
-    bool isWarning() const;
+    bool isWarning() const override;
 
     /**
      * @brief Reset the filter and state
      */
-    void reset();
+    void reset() override;
 };
 
 #endif // OBSTACLE_DETECTOR_H

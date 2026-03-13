@@ -118,9 +118,33 @@ After calibration, use:
 - [x] Debug dashboard (1Hz serial output)
 - [x] Auto-start after 5s delay
 
-⏳ **Phase 5 Remaining:**
-- [ ] Final integration test suite
-- [ ] Full system documentation and assembly guide
+✅ **Phase 5 Complete:**
+- [x] Final integration test suite (`test/robot_integration_test.cpp`) with test doubles
+- [x] Full system documentation and assembly guide
+
+---
+
+### Testing
+
+The project includes a comprehensive integration test suite that validates the robot's state machine, motor control, and obstacle avoidance logic using test doubles.
+
+**Run tests with PlatformIO:**
+
+```bash
+pio test
+```
+
+The integration test uses mock implementations of `IMotorDriver` and `IObstacleDetector` to simulate sensor readings and verify motor outputs. It covers:
+- Initialization and IDLE state
+- Starting autonomous driving
+- Obstacle detection triggering avoidance
+- Full avoidance sequence (stop, reverse, pivot turn, resume)
+- Emergency stop and reset functionality
+- Manual command rejection when not in IDLE
+
+Test results are output to the serial monitor at 115200 baud when running on actual hardware, or displayed in the console for native builds.
+
+---
 
 ## Serial Remote Control
 
