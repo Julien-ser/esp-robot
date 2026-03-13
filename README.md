@@ -111,13 +111,56 @@ After calibration, use:
 - [x] Multi-sensor support via SensorArray
 - [x] Sensor tests (unit tests with mock ISonar interface)
 
-⏳ **Phase 4 In Progress:**
-- [ ] Robot state machine implementation
-- [ ] Obstacle avoidance algorithm integration
-- [ ] Serial remote control
-- [ ] Debug dashboard
-- [ ] Integration tests
-- [ ] Final documentation
+✅ **Phase 4 Complete:**
+- [x] Robot state machine (IDLE, DRIVING, AVOIDING, STOPPED)
+- [x] Obstacle avoidance algorithm
+- [x] Serial remote control with safety interlock
+- [x] Debug dashboard (1Hz serial output)
+- [x] Auto-start after 5s delay
+
+⏳ **Phase 5 Remaining:**
+- [ ] Final integration test suite
+- [ ] Full system documentation and assembly guide
+
+## Serial Remote Control
+
+The robot can be controlled via serial commands (115200 baud). Commands are single characters:
+
+| Command | Description | Requirements |
+|---------|-------------|--------------|
+| w | Drive forward at default speed | Robot in IDLE state |
+| s | Drive backward | Robot in IDLE state |
+| a | Turn left (differential, ~90°) | Robot in IDLE state |
+| d | Turn right (differential, ~90°) | Robot in IDLE state |
+| q | Pivot counter-clockwise | Robot in IDLE state |
+| e | Pivot clockwise | Robot in IDLE state |
+| x | Emergency stop (brake) | Always accepted |
+| r | Reset from STOPPED to IDLE | Only from STOPPED |
+| ? or h | Show this help | Always accepted |
+
+**Safety Interlock:** Movement commands (w, s, a, d, q, e) are only accepted when the robot is in IDLE state. This prevents accidental commands during autonomous operation.
+
+**Auto-Start:** If the robot remains IDLE for 5 seconds, it automatically enters autonomous driving mode. Send commands before then to retain manual control.
+
+### Example Usage
+```bash
+# Open serial monitor
+screen /dev/ttyUSB0 115200
+
+# Press 'w' to drive forward (must be in IDLE)
+# Press 'x' for emergency stop
+# Press 'r' to reset after emergency stop
+```
+
+## Debug Dashboard
+
+The system outputs status information every 1 second:
+- Current state (IDLE, DRIVING, AVOIDING, STOPPED)
+- Movement status
+- Distance reading (mm)
+- Obstacle detection status
+
+Motor speeds can be added by connecting an ADC pin for battery monitoring (future enhancement).
 
 ## Setup Instructions
 

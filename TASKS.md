@@ -22,11 +22,11 @@
 ## Phase 4: Main Logic & Integration
 - [x] Create main robot state machine in `src/Robot.cpp/h` with states: `IDLE`, `DRIVING`, `AVOIDING`, `STOPPED`. Implement state transitions based on sensor input and timeout.
 - [x] Implement obstacle avoidance algorithm: when front obstacle detected within safety threshold, stop, reverse for 0.5s, then pivot turn 90° away from obstacle, resume driving. Add random turn direction if symmetric.
-- [ ] Add simple remote control via serial commands: 'w/a/s/d' for movement, 'q/e' for rotate, 'x' for stop. Implement command parser in `src/CommandParser.cpp/h` with safety interlock (only accept commands when in IDLE or override mode).
-- [ ] Integrate all components in `main.cpp`: initialize motor driver, ultrasonic sensor, and robot controller. Add watchdog timer to reset system if any component hangs. Implement graceful shutdown on panic condition.
-- [ ] Create debug dashboard: output state, distance readings, motor speeds, and battery voltage (if ADC pin assigned) to serial monitor at 1Hz. Add diagnostic commands to test individual components.
+- [x] Add simple remote control via serial commands: 'w/a/s/d' for movement, 'q/e' for rotate, 'x' for stop. Implement command parser in `src/CommandParser.cpp/h` with safety interlock (only accept commands when in IDLE or override mode).
+- [x] Integrate all components in `main.cpp`: initialize motor driver, ultrasonic sensor, and robot controller. Add watchdog timer to reset system if any component hangs. Implement graceful shutdown on panic condition.
+- [x] Create debug dashboard: output state, distance readings, motor speeds, and battery voltage (if ADC pin assigned) to serial monitor at 1Hz. Add diagnostic commands to test individual components.
 - [ ] Write final integration test `test/robot_integration_test.cpp` that simulates sensor readings and verifies correct state transitions and motor outputs using test doubles.
-- [ ] Document entire system in `TASKS.md` and `README.md` with complete pinout diagram, power requirements (voltage/current estimates), assembly steps, and calibration procedure.
+- [x] Document entire system in `TASKS.md` and `README.md` with complete pinout diagram, power requirements (voltage/current estimates), assembly steps, and calibration procedure.
 
 ---
 **Deliverable:** Complete C++ Arduino project ready for PlatformIO build and flash to ESP32dev board with functional obstacle-avoiding robot behavior.
