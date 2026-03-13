@@ -1,0 +1,14 @@
+🚀 Starting Wiggum Worker for: esp-robot
+📍 Project Path: /home/julien/Desktop/Free-Wiggum-opencode/projects/esp-robot
+⏰ Started at: Thu Mar 12 09:56:41 PM EDT 2026
+⚡ Token Budget: 64000
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━════
+
+📍 Iteration 36 at Thu Mar 12 09:56:41 PM EDT 2026...
+🤖 OpenCode processing: Create calibration routine in `src/calibration.cpp` that measures actual motor speeds and generates PWM-to-speed mapping. Store results in non-volatile storage (NVS) or config file.
+[0m
+> build · stepfun/step-3.5-flash:free
+[0m
+[91m[1mError: [0mUser not found.
+📝 Log saved: logs/iteration-36.md
+📊 Token Usage: 2750 / Session: 2750 / 64000
