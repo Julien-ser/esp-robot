@@ -16,7 +16,7 @@
 ## Phase 3: Ultrasonic Sensor Integration
 - [x] Implement `UltrasonicSensor` class in `src/UltrasonicSensor.cpp/h` using NewPing library. Add `begin()`, `ping()`, `getDistanceCM()`, `getDistanceInches()`. Set timeout to 30ms for 5m max range.
 - [x] Create `ObstacleDetector` class in `src/ObstacleDetector.cpp/h` that reads ultrasonic sensor and implements filtering (moving average) and threshold comparison with hysteresis to avoid false positives.
-- [ ] Add support for multiple sensors: implement daisy-chained or multiplexed reading if using additional front/side sensors. Define sensor positions (front-left, front-right, rear).
+- [x] Add support for multiple sensors: implement daisy-chained or multiplexed reading if using additional front/side sensors. Define sensor positions (front-left, front-right, rear).
 - [ ] Write test in `test/sensor_test.cpp` that simulates echo pulses and validates distance calculation accuracy, edge cases (no echo, too far), and filtering behavior.
 
 ## Phase 4: Main Logic & Integration
