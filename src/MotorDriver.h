@@ -72,6 +72,20 @@ public:
      * @brief Apply brake to both motors
      */
     void brake();
+
+    /**
+     * @brief Get left motor speed
+     *
+     * @return uint8_t Last set speed (0-255)
+     */
+    uint8_t getLeftSpeed() const;
+
+    /**
+     * @brief Get right motor speed
+     *
+     * @return uint8_t Last set speed (0-255)
+     */
+    uint8_t getRightSpeed() const;
 };
 
 #endif // MOTOR_DRIVER_H

@@ -21,7 +21,7 @@ void Motor::_setDirection(bool forward) {
 
 Motor::Motor(int enaPin, int in1Pin, int in2Pin, int channel, int freqHz, int resolution)
     : _enaPin(enaPin), _in1Pin(in1Pin), _in2Pin(in2Pin), _channel(channel),
-      _freqHz(freqHz), _resolution(resolution) {
+      _freqHz(freqHz), _resolution(resolution), _currentSpeed(0) {
 }
 
 void Motor::begin() {
@@ -41,6 +41,11 @@ void Motor::setSpeed(uint8_t speed) {
     // Clamp speed to valid range
     speed = constrain(speed, 0, MOTOR_MAX_SPEED);
     ledcWrite(_channel, speed);
+    _currentSpeed = speed;  // Record for status reporting
+}
+
+uint8_t Motor::getSpeed() const {
+    return _currentSpeed;
 }
 
 void Motor::forward() {

@@ -20,8 +20,8 @@
 - [x] Write test in `test/sensor_test.cpp` that simulates echo pulses and validates distance calculation accuracy, edge cases (no echo, too far), and filtering behavior.
 
 ## Phase 4: Main Logic & Integration
-- [ ] Create main robot state machine in `src/Robot.cpp/h` with states: `IDLE`, `DRIVING`, `AVOIDING`, `STOPPED`. Implement state transitions based on sensor input and timeout.
-- [ ] Implement obstacle avoidance algorithm: when front obstacle detected within safety threshold, stop, reverse for 0.5s, then pivot turn 90° away from obstacle, resume driving. Add random turn direction if symmetric.
+- [x] Create main robot state machine in `src/Robot.cpp/h` with states: `IDLE`, `DRIVING`, `AVOIDING`, `STOPPED`. Implement state transitions based on sensor input and timeout.
+- [x] Implement obstacle avoidance algorithm: when front obstacle detected within safety threshold, stop, reverse for 0.5s, then pivot turn 90° away from obstacle, resume driving. Add random turn direction if symmetric.
 - [ ] Add simple remote control via serial commands: 'w/a/s/d' for movement, 'q/e' for rotate, 'x' for stop. Implement command parser in `src/CommandParser.cpp/h` with safety interlock (only accept commands when in IDLE or override mode).
 - [ ] Integrate all components in `main.cpp`: initialize motor driver, ultrasonic sensor, and robot controller. Add watchdog timer to reset system if any component hangs. Implement graceful shutdown on panic condition.
 - [ ] Create debug dashboard: output state, distance readings, motor speeds, and battery voltage (if ADC pin assigned) to serial monitor at 1Hz. Add diagnostic commands to test individual components.

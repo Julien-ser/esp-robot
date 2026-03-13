@@ -17,6 +17,7 @@ private:
     int _channel;     // LEDC channel (0-15)
     int _freqHz;      // PWM frequency
     int _resolution;  // PWM resolution (bits)
+    uint8_t _currentSpeed;   // Last commanded speed (0-255)
 
     void _setDirection(bool forward);
 
@@ -44,6 +45,13 @@ public:
      * @param speed Speed value (0-255). 0 = stop, 255 = full speed.
      */
     void setSpeed(uint8_t speed);
+
+    /**
+     * @brief Get the last set motor speed
+     *
+     * @return uint8_t Current speed (0-255)
+     */
+    uint8_t getSpeed() const;
 
     /**
      * @brief Drive motor forward

@@ -72,3 +72,11 @@ void MotorDriver::brake() {
     _leftMotor.brake();
     _rightMotor.brake();
 }
+
+uint8_t MotorDriver::getLeftSpeed() const {
+    return _leftMotor.getSpeed();
+}
+
+uint8_t MotorDriver::getRightSpeed() const {
+    return _rightMotor.getSpeed();
+}
