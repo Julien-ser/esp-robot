@@ -48,6 +48,13 @@ public:
     uint16_t getDistanceCM();
 
     /**
+     * @brief Get the last distance measurement in millimeters
+     *
+     * @return uint16_t Distance in mm
+     */
+    uint16_t getDistanceMM();
+
+    /**
      * @brief Get the last distance measurement in inches
      *
      * @return uint16_t Distance in inches

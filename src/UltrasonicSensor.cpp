@@ -16,6 +16,10 @@ uint16_t UltrasonicSensor::ping() {
     return _sonar.ping();
 }
 
+uint16_t UltrasonicSensor::getDistanceMM() {
+    return _sonar.convert_cm(ping()) * 10;
+}
+
 uint16_t UltrasonicSensor::getDistanceCM() {
     return _sonar.convert_cm(ping());
 }
