@@ -9,7 +9,7 @@
 
 ## Phase 2: Motor Control Implementation
 - [x] Implement `Motor` class in `src/Motor.cpp/h` using PWM (ledc) for speed control and GPIO for direction. Add methods: `begin()`, `setSpeed(uint8_t)`, `forward()`, `backward()`, `stop()`, `brake()`.
-- [ ] Implement `MotorDriver` class in `src/MotorDriver.cpp/h` that encapsulates two `Motor` instances. Provide high-level movement methods: `driveForward(speed)`, `driveBackward(speed)`, `turn(speed, angle)`, `pivotTurn(speed)`.
+- [x] Implement `MotorDriver` class in `src/MotorDriver.cpp/h` that encapsulates two `Motor` instances. Provide high-level movement methods: `driveForward(speed)`, `driveBackward(speed)`, `turn(speed, angle)`, `pivotTurn(speed)`.
 - [ ] Write unit tests in `test/motor_test.cpp` that verify PWM frequency/duty cycle configuration and motor state changes using mock pins or simulated outputs.
 - [ ] Create calibration routine in `src/calibration.cpp` that measures actual motor speeds and generates PWM-to-speed mapping. Store results in non-volatile storage (NVS) or config file.
 
